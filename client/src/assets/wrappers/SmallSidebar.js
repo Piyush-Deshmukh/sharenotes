@@ -13,7 +13,7 @@ const Wrapper = styled.aside`
     align-items: center;
     z-index: -1;
     opacity: 0;
-    transition: var(--transition);
+    transition: 0.3s ease-in-out all;
     visibility: hidden;
   }
   .show-sidebar {
