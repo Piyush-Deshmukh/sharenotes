@@ -37,11 +37,6 @@ export const validateIdParam = withValidationErrors([
     
     const note = await Note.findById(value);
     if (!note) throw new NotFoundError(`no note with id ${value}`);
-    
-    const isAdmin = req.user.role === 'admin';
-    const isOwner = req.user.userId === note.userObj.createdBy.toString();
-    if (!isAdmin && !isOwner)
-      throw new UnauthorizedError('not authorized to access this route');
   }),
 ]);
 

@@ -11,7 +11,9 @@ import {
   Admin,
   Profile,
   EditNote,
+  SingleNote,
 } from './pages';
+import { Loading } from './components';
 
 // actions
 import { action as registerAction } from './pages/Register';
@@ -26,7 +28,7 @@ import { loader as dashboardLoader } from './pages/DashboardLayout';
 import { loader as myNotesLoader } from './pages/MyNotes';
 import { loader as editNoteLoader } from './pages/EditNote';
 import { loader as adminLoader } from './pages/Admin';
-import { Loading } from './components';
+import { loader as singleNoteLoader } from './pages/SingleNote';
 
 
 
@@ -89,6 +91,11 @@ const router = createBrowserRouter([
           {
             path: 'delete-note/:id',
             action: deleteNoteAction,
+          },
+          {
+            path: 'note/:id',
+            element: <SingleNote />,
+            loader: singleNoteLoader,
           },
           {
             path:'loading',

@@ -1,4 +1,4 @@
-import { FaBriefcase, FaCalendarAlt, FaLink, FaUser } from 'react-icons/fa';
+import { FaBriefcase, FaCalendarDays, FaLink, FaUser } from "react-icons/fa6";
 import { Link, Form } from 'react-router-dom';
 import Wrapper from '../assets/wrappers/Note';
 import stickyNote from '../assets/images/sticky-note.svg';
@@ -24,17 +24,19 @@ const Note = ({
 
   return (
     <Wrapper>
-      <header>
-        <img src={thumbnail ? thumbnail : stickyNote} alt="thumbnail" />
-        <div className='info'>
-          <h5>{title}</h5>
-          <p>{description}</p>
-        </div>
-      </header>
+      <Link to={`../note/${_id}`} >
+        <header>
+          <img src={thumbnail ? thumbnail : stickyNote} alt="thumbnail" />
+          <div className='info'>
+            <h5>{title}</h5>
+            <p>{description}</p>
+          </div>
+        </header>
+      </Link>
       <div className='content'>
         <div className='content-center'>
           <NoteInfo icon={<FaLink />} text={pdf} pdfLink />
-          <NoteInfo icon={<FaCalendarAlt />} text={date} />
+          <NoteInfo icon={<FaCalendarDays />} text={date} />
           <NoteInfo icon={<FaBriefcase />} text={course} />
           <NoteInfo icon={<FaUser />} text={`${userObj.name} ${userObj.lastName}`} />
         </div>

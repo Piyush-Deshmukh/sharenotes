@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react';
 import Wrapper from '../assets/wrappers/NoteInfo';
 
 const NoteInfo = ({ icon, text, pdfLink }) => {
