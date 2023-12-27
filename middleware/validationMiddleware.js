@@ -48,7 +48,7 @@ export const validateNoteReview = withValidationErrors([
       review.user.toString() === req.user.userId
     )
     
-    if (alreadyReviewed) throw new BadRequestError("Product already reviewed");
+    if (alreadyReviewed) throw new BadRequestError("Note already reviewed");
   }),
   body('rating').notEmpty().withMessage('rating is required'),
   body('comment').notEmpty().withMessage('comment is required'),
