@@ -22,6 +22,7 @@ import { action as addNoteAction } from './pages/AddNote';
 import { action as editNoteAction } from './pages/EditNote';
 import { action as deleteNoteAction } from './pages/DeleteNote';
 import { action as profileAction } from './pages/Profile';
+import { action as singleNoteAction } from './pages/SingleNote';
 
 // loaders
 import { loader as dashboardLoader } from './pages/DashboardLayout';
@@ -96,6 +97,7 @@ const router = createBrowserRouter([
             path: 'note/:id',
             element: <SingleNote />,
             loader: singleNoteLoader,
+            action: singleNoteAction,
           },
           {
             path:'loading',

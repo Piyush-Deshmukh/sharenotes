@@ -1,4 +1,4 @@
-import { FaBriefcase, FaCalendarDays, FaLink, FaUser } from "react-icons/fa6";
+import { FaBriefcase, FaCalendarDays, FaUser } from "react-icons/fa6";
 import { Link, Form } from 'react-router-dom';
 import Wrapper from '../assets/wrappers/Note';
 import stickyNote from '../assets/images/sticky-note.svg';
@@ -6,6 +6,7 @@ import NoteInfo from './NoteInfo';
 import { useMyNotesContext } from '../pages/MyNotes';
 import advancedFormat from 'dayjs/plugin/advancedFormat';
 import day from 'dayjs';
+import Rating from "./Rating";
 day.extend(advancedFormat);
 
 
@@ -14,10 +15,10 @@ const Note = ({
   title,
   description,
   thumbnail,
-  pdf,
   course,
   createdAt,
   userObj,
+  rating
 }) => {
   const date = day(createdAt).format('MMM Do, YYYY');
   const { isAllNotes } = useMyNotesContext();
@@ -35,7 +36,7 @@ const Note = ({
       </Link>
       <div className='content'>
         <div className='content-center'>
-          <NoteInfo icon={<FaLink />} text={pdf} pdfLink />
+          <Rating value={rating} />
           <NoteInfo icon={<FaCalendarDays />} text={date} />
           <NoteInfo icon={<FaBriefcase />} text={course} />
           <NoteInfo icon={<FaUser />} text={`${userObj.name} ${userObj.lastName}`} />

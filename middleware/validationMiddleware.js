@@ -31,13 +31,27 @@ export const validateNoteInput = withValidationErrors([
 ]);
 
 export const validateIdParam = withValidationErrors([
-  param('id').custom(async (value, { req }) => {
+  param('id').custom(async (value) => {
     const isValidMongoId = mongoose.Types.ObjectId.isValid(value);
     if (!isValidMongoId) throw new BadRequestError('invalid MongoDB id');
     
     const note = await Note.findById(value);
     if (!note) throw new NotFoundError(`no note with id ${value}`);
   }),
+]);
+
+export const validateNoteReview = withValidationErrors([
+  param('id').custom(async (value, { req }) => {
+    const note = await Note.findById(value);
+
+    const alreadyReviewed = note.reviews.find((review) =>
+      review.user.toString() === req.user.userId
+    )
+    
+    if (alreadyReviewed) throw new BadRequestError("Product already reviewed");
+  }),
+  body('rating').notEmpty().withMessage('rating is required'),
+  body('comment').notEmpty().withMessage('comment is required'),
 ]);
 
 export const validateRegisterInput = withValidationErrors([

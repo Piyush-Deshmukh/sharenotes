@@ -8,10 +8,12 @@ import {
   updateNote,
   deleteNote,
   getAllNotes,
+  createNoteReview,
 } from "../controllers/noteController.js";
 import {
   validateIdParam,
   validateNoteInput,
+  validateNoteReview,
 } from "../middleware/validationMiddleware.js";
 import upload from "../middleware/multerMiddleware.js";
 import { checkForTestUser } from "../middleware/authMiddleware.js";
@@ -37,5 +39,7 @@ router
             { name: 'pdf', maxCount: 1 }
           ]), validateNoteInput, validateIdParam, updateNote)
   .delete(checkForTestUser, validateIdParam, deleteNote);
+
+router.route("/:id/reviews").post(checkForTestUser, validateIdParam, validateNoteReview, createNoteReview);
 
 export default router;
