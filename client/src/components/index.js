@@ -11,3 +11,4 @@ export { default as StatItem } from './StatItem';
 export { default as SubmitBtn } from './SubmitBtn';
 export { default as Loading } from './Loading';
 export { default as NotesLinkBtn } from './NotesLinkBtn';
+export { default as Rating } from './Rating';

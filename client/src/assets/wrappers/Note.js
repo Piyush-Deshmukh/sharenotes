@@ -60,6 +60,17 @@ const Wrapper = styled.article`
     border-radius: 50%;
     background-color: #131315;
   }
+  .rating {
+    display: flex;
+    flex-direction: row;
+  }
+  .rating span {
+    margin: 0.1rem;
+  }
+  .rating svg {
+    font-size: 1.2rem;
+    color: #ff5e1a;
+  }
   .actions {
     margin-top: 1rem;
     display: flex;

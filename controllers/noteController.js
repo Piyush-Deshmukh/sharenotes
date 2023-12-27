@@ -194,3 +194,27 @@ export const deleteNote = async (req, res) => {
   
   res.status(StatusCodes.OK).json({ note: removedNote });
 };
+
+export const createNoteReview = async (req, res) => {
+  const userReview = {...req.body};
+
+  const note = await Note.findById(req.params.id);
+
+  const review = {
+    name: req.user.name,
+    lastName: req.user.lastName,
+    rating: Number(userReview.rating),
+    comment: userReview.comment,
+    user: req.user.userId
+  };
+
+  note.reviews.push(review);
+  note.numReviews = note.reviews.length;
+  note.rating =
+      note.reviews.reduce((acc, item) => item.rating + acc, 0) / note.reviews.length;
+
+
+  await note.save();
+
+  res.status(StatusCodes.CREATED).json({ msg: "Note Reviewed" });
+}
